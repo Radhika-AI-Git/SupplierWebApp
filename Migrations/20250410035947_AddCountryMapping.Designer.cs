@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SupplierWebApp.Data;
 
@@ -11,9 +12,11 @@ using SupplierWebApp.Data;
 namespace SupplierWebApp.Migrations
 {
     [DbContext(typeof(SupplierDbContext))]
-    partial class SupplierDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250410035947_AddCountryMapping")]
+    partial class AddCountryMapping
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,7 +46,7 @@ namespace SupplierWebApp.Migrations
                     b.ToTable("CountryMappings");
                 });
 
-            modelBuilder.Entity("SupplierWebApp.Models.Quotation", b =>
+            modelBuilder.Entity("SupplierWebApp.Models.DbQuotation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -64,10 +67,10 @@ namespace SupplierWebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Quotations");
+                    b.ToTable("DbQuotations");
                 });
 
-            modelBuilder.Entity("SupplierWebApp.Models.Supplier", b =>
+            modelBuilder.Entity("SupplierWebApp.Models.DbSupplier", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,7 +80,8 @@ namespace SupplierWebApp.Migrations
 
                     b.Property<string>("CountryCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -92,7 +96,7 @@ namespace SupplierWebApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Suppliers");
+                    b.ToTable("DbSuppliers");
                 });
 #pragma warning restore 612, 618
         }

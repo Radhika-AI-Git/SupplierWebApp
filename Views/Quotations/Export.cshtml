@@ -1,0 +1,22 @@
+﻿@model SupplierWebApp.Models.ViewModels.QuotationsModel
+
+@{
+    ViewData["Title"] = "Quotations List";
+}
+
+<h2>Supplier Name & Products</h2>
+
+<form method="post" asp-page-handler="ExportCsv">
+    <button type="submit" class="btn btn-primary">Export to CSV</button>
+</form>
+
+@foreach (var group in Model.SortedSuppliers)
+{
+    <h4>@group.Key</h4>
+    <ul>
+        @foreach (var product in group.Value)
+        {
+            <li>@product.Product"</li>
+        }
+    </ul>
+}

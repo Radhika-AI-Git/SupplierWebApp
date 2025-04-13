@@ -8,7 +8,9 @@ namespace SupplierWebApp.Data
     {
         public SupplierDbContext(DbContextOptions<SupplierDbContext> options) : base(options) { }
 
-        public DbSet<DbSupplier> DbSuppliers { get; set; }
-        public DbSet<DbQuotation> DbQuotations { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
+        public DbSet<Quotation> Quotations { get; set; }
+        public DbSet<CountryMapping> CountryMappings { get; set; }
+       
     }
 }

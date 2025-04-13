@@ -1,0 +1,32 @@
+﻿@model SupplierWebApp.Models.Quotation
+
+@{
+    ViewData["Title"] = "Create Quotation";
+}
+
+<h2>Create Quotation</h2>
+
+<form asp-action="Create" method="post">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="mb-3">
+        <label asp-for="SupplierId" class="form-label"></label>
+        <input asp-for="SupplierId" class="form-control" />
+        <span asp-validation-for="SupplierId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Product" class="form-label"></label>
+        <input asp-for="Product" class="form-control" />
+        <span asp-validation-for="Product" class="text-danger"></span>
+    </div> 
+
+    <div class="mb-3">
+        <label asp-for="CostPerUnit" class="form-label"></label>
+        <input asp-for="CostPerUnit" class="form-control"  />
+        <span asp-validation-for="CostPerUnit" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+

@@ -1,0 +1,40 @@
+﻿@model SupplierWebApp.Models.ViewModels.SupplierViewModel
+
+@{
+    ViewData["Title"] = "Create Supplier";
+}
+
+<h2>Create Supplier</h2>
+
+<form asp-action="Create" method="post">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="mb-3">
+        <label asp-for="Supplier.Name" class="form-label"></label>
+        <input asp-for="Supplier.Name" class="form-control" />
+        <span asp-validation-for="Supplier.Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Supplier.Email" class="form-label"></label>
+        <input asp-for="Supplier.Email" class="form-control" />
+        <span asp-validation-for="Supplier.Email" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Supplier.CountryCode" class="form-label"></label>
+        <select asp-for="Supplier.CountryCode" asp-items="Model.CountryList" class="form-select">
+            <option value="">-- Select Country --</option>
+        </select>
+        <span asp-validation-for="Supplier.CountryCode" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Supplier.DateCreated" class="form-label"></label>
+        <input asp-for="Supplier.DateCreated" class="form-control" type="date" />
+        <span asp-validation-for="Supplier.DateCreated" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+

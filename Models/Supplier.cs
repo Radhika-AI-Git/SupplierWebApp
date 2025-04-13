@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace SupplierWebApp.Models
 {
-    public class DbSupplier
+    public class Supplier
     {
         public int Id { get; set; }
 
@@ -13,10 +14,13 @@ namespace SupplierWebApp.Models
         public string Email { get; set; } = string.Empty;
 
         [Required]
-        [MaxLength(2)]
+        [StringLength(2)]
+
         public string CountryCode { get; set; } = string.Empty;
 
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; }
+
+       
     }
 }

@@ -2,7 +2,7 @@
 
 namespace SupplierWebApp.Models
 {
-    public class DbQuotation
+    public class Quotation
     {
         public int Id { get; set; }
         [Required]
@@ -11,6 +11,7 @@ namespace SupplierWebApp.Models
         public string Product { get; set; } = string.Empty;
       
         public string? CostPerUnit { get; set; } = string.Empty;
+        public Supplier Supplier { get; set; }
 
     }
 }

@@ -6,25 +6,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SupplierWebApp.Controllers
 {
-    public class DbQuotationsController : Controller
+    public class QuotationsController : Controller
     {
 
         private readonly SupplierDbContext _context;
 
-        public DbQuotationsController(SupplierDbContext context)
+        public QuotationsController(SupplierDbContext context)
         {
             _context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.DbQuotations.ToListAsync());
+            return View(await _context.Quotations.ToListAsync());
         }
 
         public IActionResult Create() => View();
 
         [HttpPost]
-        public async Task<IActionResult> Create(DbQuotation supplier)
+        public async Task<IActionResult> Create(Quotation supplier)
         {
             if (ModelState.IsValid)
             {
@@ -37,12 +37,12 @@ namespace SupplierWebApp.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            var supplier = await _context.DbQuotations.FindAsync(id);
+            var supplier = await _context.Quotations.FindAsync(id);
             return supplier == null ? NotFound() : View(supplier);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, DbQuotation supplier)
+        public async Task<IActionResult> Edit(int id, Quotation supplier)
         {
             if (id != supplier.Id) return NotFound();
             if (ModelState.IsValid)
@@ -56,17 +56,17 @@ namespace SupplierWebApp.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            var supplier = await _context.DbQuotations.FindAsync(id);
+            var supplier = await _context.Quotations.FindAsync(id);
             return supplier == null ? NotFound() : View(supplier);
         }
 
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var supplier = await _context.DbQuotations.FindAsync(id);
+            var supplier = await _context.Quotations.FindAsync(id);
             if (supplier != null)
             {
-                _context.DbQuotations.Remove(supplier);
+                _context.Quotations.Remove(supplier);
                 await _context.SaveChangesAsync();
             }
             return RedirectToAction(nameof(Index));
