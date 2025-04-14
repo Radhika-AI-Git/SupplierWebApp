@@ -1,6 +1,9 @@
 Solutions:
 1.Suppliers List -This page displays the all the suppliers list.We can add/edit/delete suppliers and also add quotations for particular supplier
 2.Quotations List- This page displays the all the quotations list.We can add/edit/delete quotations and also export the quotations list using csv file.
+
+
+
 Requirements:
 1. Create a new ASP .net core project. User identity or authentication is not required. 
 2. Create a local SQL Server database entity called “DbSupplier,” consisting of “Name,” “Email,” 
