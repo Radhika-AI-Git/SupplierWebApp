@@ -12,8 +12,8 @@ using SupplierWebApp.Data;
 namespace SupplierWebApp.Migrations
 {
     [DbContext(typeof(SupplierDbContext))]
-    [Migration("20250413033354_updatenames")]
-    partial class updatenames
+    [Migration("20250414032954_initialscripts")]
+    partial class initialscripts
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,18 +54,19 @@ namespace SupplierWebApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CostPerUnit")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal?>("CostPerUnit")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Product")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SupplierId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("SupplierId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SupplierId");
 
                     b.ToTable("Quotations");
                 });
@@ -80,7 +81,8 @@ namespace SupplierWebApp.Migrations
 
                     b.Property<string>("CountryCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -96,6 +98,22 @@ namespace SupplierWebApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Suppliers");
+                });
+
+            modelBuilder.Entity("SupplierWebApp.Models.Quotation", b =>
+                {
+                    b.HasOne("SupplierWebApp.Models.Supplier", "Supplier")
+                        .WithMany("Quotations")
+                        .HasForeignKey("SupplierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Supplier");
+                });
+
+            modelBuilder.Entity("SupplierWebApp.Models.Supplier", b =>
+                {
+                    b.Navigation("Quotations");
                 });
 #pragma warning restore 612, 618
         }

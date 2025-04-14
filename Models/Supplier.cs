@@ -8,19 +8,19 @@ namespace SupplierWebApp.Models
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; } = string.Empty;
+        public string Name { get; set; }
 
         [EmailAddress]
-        public string Email { get; set; } = string.Empty;
+        public string Email { get; set; }
 
-        [Required]
-        [StringLength(2)]
-
-        public string CountryCode { get; set; } = string.Empty;
+        [Required, MaxLength(2)]
+        public string CountryCode { get; set; }
 
         [DataType(DataType.Date)]
         public DateTime DateCreated { get; set; }
 
-       
+        public ICollection<Quotation> Quotations { get; set; }
+
+
     }
 }

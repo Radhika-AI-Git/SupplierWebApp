@@ -6,12 +6,14 @@
 
 <h2>Quotations</h2>
 
-<a asp-action="Create" class="btn btn-success mb-3">Add New Quotation</a>
 
+<a asp-controller="Suppliers" asp-action="Index" class="btn btn-success mb-3"> Suppliers List</a>
+<a class="btn btn-success mb-3" asp-action="ExportToCsv">Export to CSV</a>
 <table class="table table-bordered table-striped">
     <thead class="table-dark">
         <tr>
             <th>Supplier Id</th>
+            <th>Supplier Name</th>
             <th>Product</th>
             <th>CostPerUnit</th>
             <th>Actions</th>
@@ -21,9 +23,10 @@
         @foreach (var quotation in Model)
         {
             <tr>
-                <td>@quotation.SupplierId </td>
+                <td>@quotation.Supplier.Id</td>
+                <td>@quotation.Supplier.Name </td>
                 <td>@quotation.Product</td>
-                <td>@quotation.CostPerUnit</td>           
+                <td>@(quotation.CostPerUnit.HasValue ? quotation.CostPerUnit.Value.ToString("F2") : "")</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@quotation.Id" class="btn btn-sm btn-primary">Edit</a>
                     <a asp-action="Delete" asp-route-id="@quotation.Id" class="btn btn-sm btn-danger">Delete</a>

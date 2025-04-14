@@ -9,9 +9,10 @@
 <form asp-action="Create" method="post">
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="mb-3">
-        <label asp-for="SupplierId" class="form-label"></label>
-        <input asp-for="SupplierId" class="form-control" />
-        <span asp-validation-for="SupplierId" class="text-danger"></span>
+      
+       
+        <input type="hidden" asp-for="SupplierId" />
+       
     </div>
 
     <div class="mb-3">
